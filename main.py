@@ -38,6 +38,10 @@ OUTPUT_PATH = "/output/entry.txt"
 
 def main() -> None:
     """Write the epitaph to /output/entry.txt (creating /output if needed)."""
+    if len(EPITAPH) > 150 or "\n" in EPITAPH:
+        raise ValueError(
+            "epitaph must be one line of at most 150 characters"
+        )
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(EPITAPH + "\n")
